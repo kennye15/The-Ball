@@ -1,0 +1,170 @@
+CanvasExample5:
+
+<CanvasExample3>:
+    canvas:
+        Color:
+            rgba: 1, 0, 0, 0.3
+        Line:
+            circle: (200, 200, 100) # center_x, center_y, radius
+            width: 2
+        Line:
+            ellipse: (500, 300, 100, 200) # center_x, center_y, radius_x, radius_y
+            width: 2
+        Color:
+            rgba: 0, 0, 1, 1
+        Line:
+            rectangle: (400, 100, 300, 50) # x, y, w, h
+            width: 2
+
+<CanvasExample2>:
+    canvas:
+        Line:
+            points: (0, self.height/2, self.width, self.height/2)
+            width: 1
+        Line:
+            points: (self.width/2, self.height, self.width/2, 0)
+            width: 1
+
+<CanvasExample1>:
+    canvas:
+        Rectangle:
+            pos: self.center_x-s/2, self.center_y-s/2
+            size: s, s
+        Ellipse:
+            pos: 100, 200
+            size: s, s/2
+        Line:
+            points: (0, 0, 100, 100, 200, 0, 300, 200, 400, 200, self.width, 100)
+            width: 3
+
+<ImagesExample@GridLayout>:
+    cols: 3
+    Image:
+        # allow_stretch: True
+        # keep_ratio: False
+        source: "images/cake.jpg"
+    Image:
+        source: "images/lab_logo.png"
+    Image:
+        source: "images/lab_separator.png"
+
+<WidgetsExample>:
+    cols: 3
+    Button:
+        text: "Click here -1"
+        on_press: root.on_button_click2()
+        font_name: "fonts/Lcd.ttf"
+        font_size: "30dp"
+        disabled: not root.count_enabled
+
+    Button:
+        text: "Click here +1"
+        on_press: root.on_button_click1()
+        font_name: "fonts/Lcd.ttf"
+        font_size: "30dp"
+        disabled: not root.count_enabled
+
+    Label:
+        text: root.my_text
+        font_name: "fonts/Lcd.ttf"
+        font_size: "80dp"
+        color: "#adff2f"
+
+    ToggleButton:
+        text: "OFF"
+        on_press: root.on_button_click3(self)
+
+    Switch:
+        id: my_switch1
+        on_active: root.on_button_click4(self)
+        size_hint: None, 1
+        width: "100dp"
+        active: True
+
+    Slider:
+        id: my_slider
+        min: 0
+        max: 100
+        value: 50
+        on_value: root.on_button_click5(self)
+        orientation: "horizontal" # vertical
+        disabled: not my_switch1.active
+
+    Label:
+        text: root.slider_value_txt
+
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: str(int(my_slider.value))
+        ProgressBar:
+            max: 100
+            value: my_slider.value
+
+    TextInput:
+        id: my_text_input1
+        size_hint: None, 1
+        width: "100dp"
+        text: "foo"
+        multiline: False
+        on_text_validate: root.on_text_validate(self)
+
+    Label:
+        text: "Kenny " + root.text_input_str
+
+<AnchorLayoutExample>:
+    # right, left, center
+    anchor_x: "left"
+    # bottom, top, center
+    anchor_y: "top"
+    BoxLayout:
+        size_hint: 0.5, 0.5
+        Button:
+            text: "A"
+        Button:
+            text: "B"
+        Button:
+            text: "C"
+
+<BoxLayoutExample>:
+    orientation: "vertical" #// horizontal
+    Button:
+        text: "A"
+        # size: "80dp", "40dp" #// Here cannot use [size] this order
+        size_hint: 0.5, None
+        # width: "100dp"
+        # height: "60dp"
+        # x, center_x, right
+        # y, center_y, top
+        pos_hint: { "x": 0.25 }
+
+    BoxLayout:
+        orientation: "horizontal"
+        spacing: "10dp"
+        Button:
+            text: "B"
+        Button:
+            text: "C"
+        Button:
+            text: "D"
+        Button:
+            text: "D"
+
+<MainWidget>:
+    Button:
+        text: "Click me"
+        size: "80dp", "40dp"
+        pos: "100dp", "200dp"
+        color: "#adff2f"
+
+    Button:
+        text: "Click me again"
+        size: "120dp", "40dp"
+        pos: "0dp", "0dp"
+        color: "#0000ff"
+
+    Label:
+        text: "Welcome"
+        size: "80dp", "40dp"
+        pos: "350dp", "550dp"
+        color: "#9370db"
